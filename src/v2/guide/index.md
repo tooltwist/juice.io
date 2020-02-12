@@ -65,10 +65,46 @@ Once your project has made it through development and testing, you’ll need to 
 The process will be handled differently depending on what stage of development you are at. Generally the process will begin in the desktop development environment as follows:
 
 1. To configure a project, first you need to select the deployable in the relevant environment tab and select ‘configure’. This will bring you to a screen that displays the projects variable names and the dependencies' variable names. You will need to fill in <u>all</u> fields, then click send. 
-2. For desktop development and test environments, a flat file will be created with the configuration, which will then be sent to the application in it's designated environment. This will not be a secure environment. 
+
+2. For desktop development and test environments, a flat file will be created with the configuration, which will then be sent to the application in it's designated environment. This will not be a secure environment.
+
+{% raw %}
+<br>
+<br>
+<div style="max-width: 600px;">
+  <img style="width: 100%;" src="../../images/2. NodeJS development.png">
+</div>
+{% endraw %}
+
 3. For pre-production and production environments, the flat file generated in desktop development and test environments will be reformatted and sent to AWS Secrets Manager where you will be required to provide authorisation before storing the new configuration. This will be a secure environment. It is only at this stage that sensitive values should be stored in the config file.
+
+{% raw %}
+<br>
+<br>
+<div style="max-width: 600px;">
+  <img style="width: 100%;" src="../../images/1. Overview.png">
+</div>
+{% endraw %}
+
 4. NodeJS applications will be able to access AWS Secrets Manager directly, as seen in the diagram below. This means...
+
+{% raw %}
+<br>
+<br>
+<div style="max-width: 600px;">
+  <img style="width: 100%;" src="../../images/3. NodeJS production.png">
+</div>
+{% endraw %}
+
 5. As Java application config requirements are more complex, AWS Secrets Manager will access juice-client outside of the application, which in turn will use a flat file to configure and send to the application. See diagram below.
+
+{% raw %}
+<br>
+<br>
+<div style="max-width: 600px;">
+  <img style="width: 100%;" src="../../images/4. Java production.png">
+</div>
+{% endraw %}
 
 * Please note that you are expected to understand how to use AWS Secrets Manager before using Juice. If you need help, you can check out their documentation at www.example-website.io.
 
