@@ -1,0 +1,110 @@
+<div class="sidebar">
+  <div class="sidebar-inner-index">
+    <ul class="main-menu">
+      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+    </ul>
+  </div>
+</div>
+
+<div id="hero">
+  <div class="inner">
+    <div class="left">
+      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
+    </div><div class="right">
+      <h2 class="vue">Tooltwist</h2>
+      <h1>
+        <b>Juice</b><br>
+        A Tooltwist Component
+      </h1>
+      <p>
+        <a class="button" href="http://tooltwist.com" target="_blank">
+          WHY TOOLTWIST?</a>
+        <a class="button white" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
+        <a class="button gray has-icon" href="https://github.com/tooltwist/vue-contentservice" target="_blank">
+          <%- partial('icons/github-dark') %>
+          GITHUB</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="highlights">
+  <br />
+  <div class="inner">
+    <div class="point">
+      <h2>Intuitive</h2>
+      <p>With a smart layout and clear processes, Juice makes project configuration easy to manage.</p>
+    </div>
+
+    <div class="point">
+      <h2>Simple</h2>
+      <p>Juice isn't a complex program. It has been designed to complete the task in the most basic format to ensure minimal work from you.</p>
+    </div>
+
+    <div class="point">
+      <h2>Secure</h2>
+      <p>Juice uses AWS Secrets Manager to store your configuration files in a consistent and fool-proof process.</p>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div id="footer">
+  <p>
+    <a class="social-icon" href="https://github.com/vuejs/vue" target="_blank">
+      <%- partial('icons/github') %>
+    </a>
+    <a class="social-icon" href="https://twitter.com/tooltwist" target="_blank">
+      <%- partial('icons/twitter') %>
+    </a>
+    <a class="social-icon" href="https://medium.com/the-vue-point" target="_blank">
+      <%- partial('icons/medium') %>
+    </a>
+  </p>
+  <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
+  Copyright &copy; 2014-<%- new Date().getFullYear() %> Tooltwist Ltd.</p>
+</div>
+
+<div id="video-modal" class="modal">
+  <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+</div>
+
+<script>
+(function () {
+  var topScrolled = false
+  var sponsors = document.getElementById('sponsors')
+  var sponsorTop = sponsors.offsetTop
+  var sponsorActive = false
+
+  window.addEventListener('resize', function () {
+    sponsorTop = sponsors.offsetTop
+  })
+
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 165 && !topScrolled) {
+      topScrolled = true
+      document.getElementById('mobile-bar').classList.remove('top')
+    } else if (window.pageYOffset <= 165 && topScrolled) {
+      topScrolled = false
+      document.getElementById('mobile-bar').classList.add('top')
+    }
+    if (window.pageYOffset > sponsorTop - 100) {
+      if (!sponsorActive) {
+        sponsorActive = true
+        sponsors.classList.add('active')
+      }
+    } else {
+      if (sponsorActive) {
+        sponsorActive = false
+        sponsors.classList.remove('active')
+      }
+    }
+  })
+})()
+</script>
