@@ -1,0 +1,7 @@
+
+/node_modules
+/yarn-error.log
+/public
+/db.json
+/.deploy_git
+.DS_Store
