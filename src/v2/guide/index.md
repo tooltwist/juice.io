@@ -4,6 +4,48 @@ type: guide
 order: 2
 ---
 
+## Executive Overview
+### Quick start
+The way you use Juice will depend on your role in operations or as a developer. Generally the overall process will go as follows: 
+1. Developers will define config parameters required for their application.
+2. Operations will define environments and value of parameters supporting the application.
+3. JuiceConfig assists with defining the parameter values for each environment, and save the resulting configurations securely.
+4. When retrieving previous configs, JuiceConfig pulls config values from secure storage (local or AWS/ECS/Docker).
+
+#### Example Use Case
+There are 2 main usages for Juice:
+* The local storage allows for development on your personal machine.
+* Access to AWS, ECS and Docker allows deployment to these environments:
+    * low security CI or test server
+    * highly secure staging and production servers
+
+#### Add diagram here...
+
+### Config Manager
+  * juiceconfig.com
+     * non-secure values
+  * self hosted
+      * may contain secure values, if ...
+
+### Defining a Configuration
+  * dependancies
+  * internal versus external values
+  * Deployments
+
+### Saving your config
+  * flat files (JSON)
+  * AWS Secrets Manager
+  * Write your own plugin
+
+### Accessing configs from files
+  * NodeJS
+  * Java (not ready yet)
+  * Golang (not ready yet)
+
+### Updating legacy config files
+e.g. Tomcat / Spring
+
+
 ## Introduction
 ### What is Juice?
 Juice is a configuration tool for AWS that assists programmers and non-programmers alike by creating a simple and intuitive process that ensures projects are managed effectively at each stage of development and deployed correctly every time. This system promotes security, transparency and consistency above all. 
@@ -12,6 +54,19 @@ Juice is a configuration tool for AWS that assists programmers and non-programme
 Deployment can become a nightmare if your processes rely on individuals to maintain consistent and accurate configuration files. Most programmers develop their own procedures for deployment and storing sensitive information, and whilst companies may have recommended best practices, it’s easy for things to slip through the cracks due to human errors such as miscommunication, inexperience or just plain-old laziness. These mistakes are not only annoying but can pose serious security risks and can be damaging to client relationships. This is where Juice becomes a valuable asset in your future deployments.
 
 Juice provides a simple, easy-to-use solution for configuring projects that prevents easily-made human errors. The procedure provided by Juice is safe guarded to prevent unauthorised personnel from making potentially damaging changes to existing infrastructure or projects. It also ensures that configuration files are consistent, thorough and values are recorded carefully and thoughtfully. 
+
+### Objectives
+  * simple, standalone development, not complicated by production config considerations.
+  * No configuration or secure information in the source code or build scripts.
+  * Restricted access to secure information and production system.
+  * Simplified, consistent, error free Ops
+      * define all that is required
+      * remove risk of accidentally copying parameters from one environment to another
+      * generate templates and scripts
+      * fast recognition of missing config values
+  * Same source code throughout (despite different locations for the config definitions)
+  * Same Docker image across all non-dev environments
+  * Remove double entry of config values (e.g. server starts on specific port, client uses that port as it’s endpoint)
 
 ### Is it secure?
 Juice does not store or manage any sensitive information. During the project configuration process, Juice will request variable values for the project and each of its dependencies. This data is then stored in AWS Secrets Manager, or if preferable, in your local storage as a flat file. Juice simply provides a safe-guarded procedure for recording configuration values that ensures smooth project deployment every time.
@@ -107,6 +162,7 @@ The process will be handled differently depending on what stage of development y
 {% endraw %}
 
 * Please note that you are expected to understand how to use AWS Secrets Manager before using Juice. If you need help, you can check out their documentation at www.example-website.io.
+
 
 And that’s it. Super simple, super intuitive. 
 Good luck and happy coding!
