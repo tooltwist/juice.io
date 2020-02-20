@@ -69,7 +69,7 @@ Juice provides a simple, easy-to-use solution for configuring projects that prev
   * Remove double entry of config values (e.g. server starts on specific port, client uses that port as it’s endpoint)
 
 ### Is it secure?
-Juice does not store or manage any sensitive information. During the project configuration process, Juice will request variable values for the project and each of its dependencies. This data is then stored in AWS Secrets Manager, or if preferable, in your local storage as a flat file. Juice simply provides a safe-guarded procedure for recording configuration values that ensures smooth project deployment every time.
+Juice does not store or manage any sensitive information. During the project configuration process, Juice will request variable values for the project and each of its dependencies. This data is then stored in AWS Secrets Manager, or if preferable, in your local storage. Juice simply provides a safe-guarded procedure for recording configuration values that ensures smooth project deployment every time.
 
 ### Software license 
 Juice is Public Domain and free to use... here's the software license info.... 
