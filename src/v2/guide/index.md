@@ -1,78 +1,33 @@
 ---
-title: juiceconfig.io
+title: Documentation
 type: guide
 order: 2
 ---
 
-## Executive Overview
-### Quick start
-The way you use Juice will depend on your role in operations or as a developer. Generally the overall process will go as follows: 
-1. Developers will define config parameters required for their application.
-2. Operations will define environments and value of parameters supporting the application.
-3. JuiceConfig assists with defining the parameter values for each environment, and save the resulting configurations securely.
-4. When retrieving previous configs, JuiceConfig pulls config values from secure storage (local or AWS/ECS/Docker).
-
-#### Example Use Case
-There are 2 main usages for Juice:
-* The local storage allows for development on your personal machine.
-* Access to AWS, ECS and Docker allows deployment to these environments:
-    * low security CI or test server
-    * highly secure staging and production servers
-
-#### Add diagram here...
-
-### Config Manager
-  * juiceconfig.com
-     * non-secure values
-  * self hosted
-      * may contain secure values, if ...
-
-### Defining a Configuration
-  * dependancies
-  * internal versus external values
-  * Deployments
-
-### Saving your config
-  * flat files (JSON)
-  * AWS Secrets Manager
-  * Write your own plugin
-
-### Accessing configs from files
-  * NodeJS
-  * Java (not ready yet)
-  * Golang (not ready yet)
-
-### Updating legacy config files
-e.g. Tomcat / Spring
-
-
 ## Introduction
 ### What is Juice?
-Juice is a configuration tool for AWS that assists programmers and non-programmers alike by creating a simple and intuitive process that ensures projects are managed effectively at each stage of development and deployed correctly every time. This system promotes security, transparency and consistency above all. 
+Juice is a configuration tool for AWS that assists programmers and non-programmers alike by creating a simple and intuitive process that ensures projects are managed effectively at each stage of product development and deployed correctly every time. This system promotes security, transparency and consistency above all. 
+#### Objectives
+* To make development simple and standalone by removing the complications of production config considerations.
+* To prevent storing configuration values and secure information in the source code and build scripts.
+* To provide restricted access to secure information and the production system.
+* To offer simplified, consistent, error free Ops by:
+  * Defining all that is required
+  * Removing the risk of accidentally copying parameters from one environment to another
+  * Generating reliable templates and scripts
+  * Fast recognition of missing config values
+
+* To ensure that the same source code is used throughout, despite having different locations for the config definitions.
+* To use the same Docker image across all non-dev environments.
+* To remove double entry of config values (e.g. server starts on specific port, client uses that port as it’s endpoint).
 
 ### Why is it useful? 
 Deployment can become a nightmare if your processes rely on individuals to maintain consistent and accurate configuration files. Most programmers develop their own procedures for deployment and storing sensitive information, and whilst companies may have recommended best practices, it’s easy for things to slip through the cracks due to human errors such as miscommunication, inexperience or just plain-old laziness. These mistakes are not only annoying but can pose serious security risks and can be damaging to client relationships. This is where Juice becomes a valuable asset in your future deployments.
 
 Juice provides a simple, easy-to-use solution for configuring projects that prevents easily-made human errors. The procedure provided by Juice is safe guarded to prevent unauthorised personnel from making potentially damaging changes to existing infrastructure or projects. It also ensures that configuration files are consistent, thorough and values are recorded carefully and thoughtfully. 
 
-### Objectives
-  * simple, standalone development, not complicated by production config considerations.
-  * No configuration or secure information in the source code or build scripts.
-  * Restricted access to secure information and production system.
-  * Simplified, consistent, error free Ops
-      * define all that is required
-      * remove risk of accidentally copying parameters from one environment to another
-      * generate templates and scripts
-      * fast recognition of missing config values
-  * Same source code throughout (despite different locations for the config definitions)
-  * Same Docker image across all non-dev environments
-  * Remove double entry of config values (e.g. server starts on specific port, client uses that port as it’s endpoint)
-
 ### Is it secure?
-Juice does not store or manage any sensitive information. During the project configuration process, Juice will request variable values for the project and each of its dependencies. This data is then stored in AWS Secrets Manager, or if preferable, in your local storage. Juice simply provides a safe-guarded procedure for recording configuration values that ensures smooth project deployment every time.
-
-### Software license 
-Juice is Public Domain and free to use... here's the software license info.... 
+Juice does not store or manage any sensitive information. During the project configuration process, Juice will request variable values for the project and each of its dependencies. This data is then stored in AWS Secrets Manager or in your local storage, depending on the environment you intend to use. Juice simply provides a safe-guarded procedure for recording configuration values that ensures smooth project deployment every time.
 
 ## Getting Started
 ### How to register
@@ -82,7 +37,7 @@ Your account will be registered using LoginService, a ToolTwist authentication t
 
 ### Setting up your account
 #### Understanding your intended use
-Juice can be used by individuals or businesses, and the way that you set up your account will reflect this. If you are looking to set up a personal account to create a stream-lined process but do not need to include other users, simply register at the login page and set a password, then confirm your account via email. As a business, you will need to set up the account as a superuser, then add in users manually and individually select their accessibility for each deployable and environment once the account has been set up. 
+Juice can be used by individuals or businesses and caters to a variety of different roles. The way that you set up your account will reflect your intended use. If you are looking to set up a personal account to create a stream-lined process but do not need to include other users, simply register at the login page and set a password, then confirm your account via email. As a business, you will need to set up the account as a superuser, then add in users manually and individually select their accessibility based on their role for each deployable and/or environment once the account has been set up. 
 
 #### Getting to know the layout
 There will be a variety of familiar terms you will see on the website. To avoid confusion, make sure you understand what they require before entering in any data: 
@@ -91,6 +46,7 @@ Glossary | Description
 ------------- | -------------
 Deployables  | Deployables are programs that can be either existing projects or software that the projects require to run (such as mySQL, ContentService or LoginService).
 Project  | A project is a program that is in the process of development. Not all deployables will be projects. 
+Deployments | These are deployables that are to be configured with a selected environment. You must declare the relationship between the deployable and the environment in the deployable tab before configuration. 
 Dependencies | Dependencies are deployables that are required to run exisiting projects and other deployables. For example, a project might require LoginService and ContentService to run, therefore they would be the projects dependencies. A dependency might also have its own dependencies, which would be declared on its own deployables page.
 Environments | Environments are exactly as you would imagine, they can be on a local server or on a pre-setup server. 
 Variables | Variables are the configurable values that are required for each project to be deployed (such as endpoints or database name). Variables should be created for every deployable and their dependencies, and each variable will be given values when configuring a project. 
@@ -111,17 +67,29 @@ The rest is intuitive and the process of adding information is up to you. Howeve
 </div>
 {% endraw %}
 
-<!-- #### Settings
-Lastly, you can manage your account by clicking on the settings tab in the top right-hand corner.  -->
+## Configuring a project
+### Overview
+To configure any project you will first need to select the project in the relevant environment tab and select ‘configure’. This will bring you to a screen that displays the projects variable names and the dependencies’ variable names. You will need to fill in all fields, then click send. This will create a text file that can be reformatted for your specific purposes. The next steps will be determined based on your required environment.
 
-### Configure a project for deployment
-Once your project has made it through development and testing, you’ll need to think about deploying it with AWS. Using Juice, configuring and storing variable values is as easy as this:
+(SCREEN SHOT OF ENVIRONMENT>DEPLOYABLE>CONFIGURE BUTTON)
+(SCREEN SHOT OF CONFIG FORM) 
 
-The process will be handled differently depending on what stage of development you are at. Generally the process will begin in the desktop development environment as follows:
+#### Using Juice-client CLI in a Docker container
+Our objective with juice-client is to use the same Docker image in different environments, whilst still updating the config files as your project develops. That is, the same image will be used on the developers desktop machine/laptop AND on AWS servers during continuous integration (CI), development testing, User Acceptance testing (UAT), staging and production environments. In this sense, the applications are protected against unwarranted changes during deployment from one environment on to the next.
 
-1. To configure a project, first you need to select the deployable in the relevant environment tab and select ‘configure’. This will bring you to a screen that displays the projects variable names and the dependencies' variable names. You will need to fill in <u>all</u> fields, then click send. 
+#### Where are the configs stored?
+Depending on the environment, the config will be stored in either a flat JSON format or on AWS Secrets Manager. Examples:
 
-2. For desktop development and test environments, a flat file will be created with the configuration, which will then be sent to the application in it's designated environment. This will not be a secure environment.
+```
+export JUICE_CONFIG='file:::/opt/Development/Projects/juice/juice-config/local-server/volumes/juice/config/config-for-juice.json'
+
+export JUICE_CONFIG='secrets_manager:::ap-southeast-1:::PHILTEST'
+```
+
+*In the second example, the ap-southeast-1:::PHILTEST part is an identifier provided by AWS Secrets Manager. See the AWS Documentation for details.
+
+### Desktop development and testing
+For desktop development and test environments, a flat file will be created with the configuration, which will then be sent to the application in its designated environment. This will not be a secure environment.
 
 {% raw %}
 <br>
@@ -131,7 +99,8 @@ The process will be handled differently depending on what stage of development y
 </div>
 {% endraw %}
 
-3. For pre-production and production environments, the flat file generated in desktop development and test environments will be reformatted and sent to AWS Secrets Manager where you will be required to provide authorisation before storing the new configuration. This will be a secure environment. It is only at this stage that sensitive values should be stored in the config file.
+### Pre-production and production
+For pre-production and production environments, the flat file generated in desktop development and test environments will be reformatted based on your environments specific requirements. This will then be sent to AWS Secrets Manager where you will be required to provide authorisation before storing the new configuration. This will be a secure environment. It is only at this stage that sensitive values should be stored in the config file.
 
 {% raw %}
 <br>
@@ -141,7 +110,8 @@ The process will be handled differently depending on what stage of development y
 </div>
 {% endraw %}
 
-4. NodeJS applications will be able to access AWS Secrets Manager directly, as seen in the diagram below. This means...
+##### juice-client as a library in a NodeJS application 
+NodeJS applications will be able to access AWS Secrets Manager directly, as seen in the diagram below. This means…
 
 {% raw %}
 <br>
@@ -151,7 +121,28 @@ The process will be handled differently depending on what stage of development y
 </div>
 {% endraw %}
 
-5. As Java application config requirements are more complex, AWS Secrets Manager will access juice-client outside of the application, which in turn will use a flat file to configure and send to the application. See diagram below.
+NodeJS programs will require the juice-client package to be installed in order to access config values. To install juice-client package from NPM, simply run the following in your terminal:
+
+```
+ # npm install @tooltwist/juice-client --save
+```
+In your program you will be required to define the following values: 
+```
+  const juice = require('juice-client')
+
+  let value = juice.stringValue(name, defaultValue/*optional*/)
+  let value = juice.intValue(name, defaultValue/*optional*/)
+```
+
+The value returned will be determined as:
+1. If the value is defined in the configuration it will be returned.
+2. If a default value is specified, it will be returned.
+3. If the default value is juice.OPTIONAL, then the default value for the type will be returned (an empty string, or -1 for numeric values)
+4. If the default value provided is juice.MANDATORY, an exception is thrown. Typically the program should immediately log the error and shut down.
+5. If no default is specified, then juice.MANDATORY is assumed.
+
+#### juice-client as a library in non-NodeJS application
+As non-NodeJS application config requirements are more complex, AWS Secrets Manager will access juice-client outside of the application, which in turn will use a flat file to configure and send to the application. 
 
 {% raw %}
 <br>
@@ -161,8 +152,72 @@ The process will be handled differently depending on what stage of development y
 </div>
 {% endraw %}
 
-* Please note that you are expected to understand how to use AWS Secrets Manager before using Juice. If you need help, you can check out their documentation at www.example-website.io.
+Libraries for languages such as Java and GoLang are currently in progress. For now, we recommend using juice-client as a CLI. Check out the instructions in the next section.
 
 
-And that’s it. Super simple, super intuitive. 
+### Using the CLI
+##### juice-client as a CLI
+{% raw %}
+<br>
+<br>
+<div style="max-width: 600px;">
+  <img style="width: 100%;" src="../../images/juice-client-cli-in-docker-container.png">
+</div>
+{% endraw %}
+
+Docker images are created using a Dockerfile and using the “docker build” command. See the Docker documentation for more details. 
+
+We’ll update the config files at the time the docker container starts, just before the application starts. For this to happen several things need to be set up:
+
+1. We build the application’s Docker image with juice-client installed. The Dockerfile will need NodeJS installed prior to running these commands:
+
+```
+# Install juice-client
+RUN mkdir /juice-client
+WORKDIR /juice-client
+RUN echo {} > package.json
+RUN npm install --color false @tooltwist/juice-client --save
+
+COPY config-template /juice-client-config-template
+
+CMD ["bash", "some-script.sh"]
+```
+
+2. The script used to start the application should use juice-client to create the config files from template config files. For example:
+
+```
+CMD=/juice-client/node_modules/\@tooltwist/juice-client/lib/juice-client
+node ${CMD} install /juice-client-config-template/template-config-file1.config /somewhere/config/real-config-file1.config
+[check exit status (see example below)]
+node ${CMD} install /juice-client-config-template/template-config-file2.xml /somewhere/config/real-config-file2.xml
+[check exit status]
+node ${CMD} install /juice-client-config-template/template-config-file3.json /somewhere/config/real-config-file3.json
+[check exit status]
+...
+[start the application]
+```
+
+Binary files are copied without changes. ASCII and Unicode files are handled. An entire directory can be copied recursively.
+```
+CMD=/juice-client/node_modules/\@tooltwist/juice-client/lib/juice-client
+node ${CMD} install /juice-client-template-config-directory /somewhere/config
+if [ $? != 0 ] ; then
+    echo FATAL ERROR WHILE INSTALLING CONFIG FILES.
+    echo SERVER WILL SHUT DOWN
+    sleep 60
+    exit 1
+fi
+...
+[start the application]
+```
+
+This command returns with zero if the install worked correctly. All config variables are assumed to be mandatory.
+
+If any of the config files refer to a config value that has not been defined, the script should display an error message, pause a short while, then shut down. The Docker container will be restarted by Amazon ECS, and the sleep prevents it cycling too fast through the recycles. The intention is that the admin will see the error and update Amazon Secrets Manager with the missing config values.
+
+3. Amazon ECS need to be told to start the Docker image with…
+a) Environment variable JUICE_CONFIG pointing to the appropriate Amazon Secrets Manager secret.
+b) ECS can assign a permissions ‘role’ to a running Docker container. This role grants the entity with the role (i.e. our Docker container) access to resources. The administrator should assign a role to our Docker container that has access to the specified Amazon Secrets Manager secret.
+
+And that’s it. Super simple, super intuitive.
 Good luck and happy coding!
