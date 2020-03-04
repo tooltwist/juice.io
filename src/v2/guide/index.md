@@ -27,13 +27,13 @@ Deployment can become a nightmare if your processes rely on individuals to maint
 Juice provides a simple, easy-to-use solution for configuring projects that prevents easily-made human errors. The procedure provided by Juice is safe guarded to prevent unauthorised personnel from making potentially damaging changes to existing infrastructure or projects. It also ensures that configuration files are consistent, thorough and values are recorded carefully and thoughtfully. 
 
 ### Is it secure?
-Juice does not store or manage any sensitive information. During the project configuration process, Juice will request variable values for the project and each of its dependencies. This data is then stored in AWS Secrets Manager or in your local storage, depending on the environment you intend to use. Juice simply provides a safe-guarded procedure for recording configuration values that ensures smooth project deployment every time.
+Juice does not store or manage any sensitive information. During the project configuration process Juice will request variable values for the project and each of its dependencies. This data is then stored in AWS Secrets Manager or in your local storage, depending on your required environment. Juice simply provides a safe-guarded procedure for recording configuration values that ensures smooth project deployment every time.
 
 ## Getting Started
 ### How to register
-Your account will be registered using LoginService, a ToolTwist authentication tool. You can sign up using your email address or Facebook account. Simply create a password and a verification email will be sent to your inbox. Once verified you can login using the homepage at www.juiceconfig.io. 
+Your account will be registered using LoginService, a ToolTwist authentication tool. You must sign up using your email address, then create a new password and a verification email will be sent to your inbox. Once verified you can login using the homepage at www.juiceconfig.io. 
  
-<i>‘I forgot my password, what can I do?’</i> - Simply select the ‘forgot password’ option and a password reset will be sent to your designated email address or Facebook account. 
+<i>‘I forgot my password, what can I do?’</i> - Simply select the ‘forgot password’ option and a password reset will be sent to your designated email address. 
 
 ### Setting up your account
 #### Understanding your intended use
@@ -46,18 +46,18 @@ Glossary | Description
 ------------- | -------------
 Deployables  | Deployables are programs that can be either existing projects or software that the projects require to run (such as mySQL, ContentService or LoginService).
 Project  | A project is a program that is in the process of development. Not all deployables will be projects. 
-Deployments | These are deployables that are to be configured with a selected environment. You must declare the relationship between the deployable and the environment in the deployable tab before configuration. 
+Deployments | Deployments are deployables that are in the process of being configured with a selected environment. You must declare the relationship between the deployable and the environment in the deployable tab before configuration. 
 Dependencies | Dependencies are deployables that are required to run exisiting projects and other deployables. For example, a project might require LoginService and ContentService to run, therefore they would be the projects dependencies. A dependency might also have its own dependencies, which would be declared on its own deployables page.
-Environments | Environments are exactly as you would imagine, they can be on a local server or on a pre-setup server. 
+Environments | Environments should be managed by infrastructure, and devs should only have access to development environments. These can refer to environments on a local server or otherwise (such as UAT, pre-production, production etc).
 Variables | Variables are the configurable values that are required for each project to be deployed (such as endpoints or database name). Variables should be created for every deployable and their dependencies, and each variable will be given values when configuring a project. 
 
 #### Adding data
 The rest is intuitive and the process of adding information is up to you. However, generally we might suggest the following order:  (This will include screen shots as a guide, once the UI is ready)
-1. Your first step might be to add the deployables. Depending on how complicated or numerous your programs are, this might take a while. Alternatively you may wish to add all deployables relevant to a certain project, then go through the entire process for each project to ensure that you do not miss any dependencies (deployables) for that project. 
+1. Your first step could be to add deployables. Depending on how complicated or numerous your programs are, this might take a while. Alternatively you may wish to add all deployables relevant to a certain project, then go through the entire process for each project to ensure that you do not miss any dependencies (deployables) for that project. 
 2. Next, you should populate the relevant fields for each deployable. This includes entering in the deployables variables and dependencies. You should have all deployables added already, so adding dependencies is as simple as selecting the deployable from a list.
 3. Adding environments will be the simplest part of the process. Simply add the names and specifications of your environments.
 4. Next add the names and roles for users who will need access to Juice. The users tab will only be viewable for the superuser or read/write users. This displays a list of all users with access to your Juice account, their accessibility which can be edited, and the projects and environments that they are involved in. 
-5. Lastly, as a superuser you will need to manually add users to each project or environment, or create read/write access for other users so that they can add themselves and members of their team to projects and environments where applicable. However, it is important to make sure that limited users have read/write access to minimise the chances of human error.
+5. Lastly, as a superuser you will need to manually add users to each project or environment, or create read/write access for other users so that they can add themselves and members of their team to projects and environments where applicable. However, it is important to limit users that have read/write access to minimise the chances of human error.
 
 {% raw %}
 <br>
@@ -69,13 +69,13 @@ The rest is intuitive and the process of adding information is up to you. Howeve
 
 ## Configuring a project
 ### Overview
-To configure any project you will first need to select the project in the relevant environment tab and select ‘configure’. This will bring you to a screen that displays the projects variable names and the dependencies’ variable names. You will need to fill in all fields, then click send. This will create a text file that can be reformatted for your specific purposes. The next steps will be determined based on your required environment.
+To configure any project you will first need to select the project in the relevant environment tab, then select ‘configure’. This will bring you to a screen that displays the projects variable names and the dependencies’ variable names. You will need to fill in all fields, then click send. This will create a text file that can be reformatted for your specific purposes. The next steps will be determined based on your required environment.
 
 (SCREEN SHOT OF ENVIRONMENT>DEPLOYABLE>CONFIGURE BUTTON)
 (SCREEN SHOT OF CONFIG FORM) 
 
 #### Using Juice-client CLI in a Docker container
-Our objective with juice-client is to use the same Docker image in different environments, whilst still updating the config files as your project develops. That is, the same image will be used on the developers desktop machine/laptop AND on AWS servers during continuous integration (CI), development testing, User Acceptance testing (UAT), staging and production environments. In this sense, the applications are protected against unwarranted changes during deployment from one environment on to the next.
+Our objective with juice-client is to use the same Docker image in different environments, whilst still updating the config files as your project develops. This means the same image will be used on the developers desktop machine/laptop AND on AWS servers during continuous integration (CI), development testing, User Acceptance testing (UAT), staging and production environments. In this sense, the applications are protected against unwarranted changes during deployment from one environment on to the next.
 
 #### Where are the configs stored?
 Depending on the environment, the config will be stored in either a flat JSON format or on AWS Secrets Manager. Examples:
@@ -110,8 +110,8 @@ For pre-production and production environments, the flat file generated in deskt
 </div>
 {% endraw %}
 
-##### juice-client as a library in a NodeJS application 
-NodeJS applications will be able to access AWS Secrets Manager directly, as seen in the diagram below. This means…
+##### juice-client as a library in a NodeJS application
+NodeJS applications will be able to access AWS Secrets Manager directly, as seen in the diagram below. This means that you will not be required to reformat the config file and it can be sent directly from Juice-client to AWS Secrets Manager. 
 
 {% raw %}
 <br>
@@ -134,10 +134,10 @@ In your program you will be required to define the following values:
   let value = juice.intValue(name, defaultValue/*optional*/)
 ```
 
-The value returned will be determined as:
+The value returned will be determined by:
 1. If the value is defined in the configuration it will be returned.
 2. If a default value is specified, it will be returned.
-3. If the default value is juice.OPTIONAL, then the default value for the type will be returned (an empty string, or -1 for numeric values)
+3. If the default value is juice.OPTIONAL, then the default value for the type will be returned (an empty string, or -1 for numeric values).
 4. If the default value provided is juice.MANDATORY, an exception is thrown. Typically the program should immediately log the error and shut down.
 5. If no default is specified, then juice.MANDATORY is assumed.
 
@@ -169,7 +169,7 @@ Docker images are created using a Dockerfile and using the “docker build” co
 
 We’ll update the config files at the time the docker container starts, just before the application starts. For this to happen several things need to be set up:
 
-1. We build the application’s Docker image with juice-client installed. The Dockerfile will need NodeJS installed prior to running these commands:
+1. Once juice-client is installed, we build the application’s Docker image. The Dockerfile will also need NodeJS installed prior to running these commands:
 
 ```
 # Install juice-client
@@ -198,6 +198,7 @@ node ${CMD} install /juice-client-config-template/template-config-file3.json /so
 ```
 
 Binary files are copied without changes. ASCII and Unicode files are handled. An entire directory can be copied recursively.
+
 ```
 CMD=/juice-client/node_modules/\@tooltwist/juice-client/lib/juice-client
 node ${CMD} install /juice-client-template-config-directory /somewhere/config
@@ -211,13 +212,13 @@ fi
 [start the application]
 ```
 
-This command returns with zero if the install worked correctly. All config variables are assumed to be mandatory.
+This command returns with zero if the install worked correctly and all config variables are assumed to be mandatory.
 
-If any of the config files refer to a config value that has not been defined, the script should display an error message, pause a short while, then shut down. The Docker container will be restarted by Amazon ECS, and the sleep prevents it cycling too fast through the recycles. The intention is that the admin will see the error and update Amazon Secrets Manager with the missing config values.
+If any of the config files refer to a config value that has not been defined, the script should display an error message, pause for a short while, then shut down. The Docker container will be restarted by AWS ECS, and the sleep prevents it from cycling too fast through the recycles. The intention is that the admin will see the error and update AWS Secrets Manager with the missing config values.
 
-3. Amazon ECS need to be told to start the Docker image with…
-a) Environment variable JUICE_CONFIG pointing to the appropriate Amazon Secrets Manager secret.
-b) ECS can assign a permissions ‘role’ to a running Docker container. This role grants the entity with the role (i.e. our Docker container) access to resources. The administrator should assign a role to our Docker container that has access to the specified Amazon Secrets Manager secret.
+3. AWS ECS requires to be told to start the Docker image with - 
+a) Environment variable JUICE_CONFIG pointing to the appropriate AWS Secrets Manager secret.
+b) ECS can assign a permissions ‘role’ to a running Docker container. This role grants the entity with the role (i.e. our Docker container) access to resources. The administrator should assign a role to our Docker container that has access to the specified AWS Secrets Manager secret.
 
 And that’s it. Super simple, super intuitive.
 Good luck and happy coding!
