@@ -6,28 +6,28 @@ order: 2
 
 ## Introduction
 ### What is Juice?
-Juice is a configuration tool for AWS that assists programmers and non-programmers alike by creating a simple and intuitive process that ensures projects are managed effectively at each stage of product development and deployed correctly every time. This system promotes security, transparency and consistency above all. 
+Juice is a config tool for AWS that assists programmers and non-programmers alike by creating a simple and intuitive process that ensures projects are managed effectively at each stage of product development and deployed correctly every time. This system promotes security, transparency and consistency above all. 
+
+### Why is it useful? 
+Deployment can become a nightmare if your processes rely on individuals to maintain consistent and accurate config files. Most programmers develop their own procedures for deployment and storing sensitive information, and whilst companies may have recommended best practices, it’s easy for things to slip through the cracks due to human errors such as miscommunication, inexperience or just plain-old laziness. These mistakes are not only annoying but can pose serious security risks and can be damaging to client relationships. This is where Juice becomes a valuable asset in your future deployments.
+
+Juice provides a simple, easy-to-use solution for configuring projects that prevents easily-made human errors. The procedure provided by Juice is safe guarded to prevent unauthorised personnel from making potentially damaging changes to existing infrastructure or projects. It also ensures that config files are consistent, thorough and values are recorded carefully and thoughtfully. 
+
 #### Objectives
 * To make development simple and standalone by removing the complications of production config considerations.
-* To prevent storing configuration values and secure information in the source code and build scripts.
+* To prevent storing config values and secure information in the source code and build scripts.
 * To provide restricted access to secure information and the production system.
 * To offer simplified, consistent, error free Ops by:
   * Defining all that is required
   * Removing the risk of accidentally copying parameters from one environment to another
   * Generating reliable templates and scripts
   * Fast recognition of missing config values
-
 * To ensure that the same source code is used throughout, despite having different locations for the config definitions.
 * To use the same Docker image across all non-dev environments.
 * To remove double entry of config values (e.g. server starts on specific port, client uses that port as it’s endpoint).
 
-### Why is it useful? 
-Deployment can become a nightmare if your processes rely on individuals to maintain consistent and accurate configuration files. Most programmers develop their own procedures for deployment and storing sensitive information, and whilst companies may have recommended best practices, it’s easy for things to slip through the cracks due to human errors such as miscommunication, inexperience or just plain-old laziness. These mistakes are not only annoying but can pose serious security risks and can be damaging to client relationships. This is where Juice becomes a valuable asset in your future deployments.
-
-Juice provides a simple, easy-to-use solution for configuring projects that prevents easily-made human errors. The procedure provided by Juice is safe guarded to prevent unauthorised personnel from making potentially damaging changes to existing infrastructure or projects. It also ensures that configuration files are consistent, thorough and values are recorded carefully and thoughtfully. 
-
 ### Is it secure?
-Juice does not store or manage any sensitive information. During the project configuration process Juice will request variable values for the project and each of its dependencies. This data is then stored in AWS Secrets Manager or in your local storage, depending on your required environment. Juice simply provides a safe-guarded procedure for recording configuration values that ensures smooth project deployment every time.
+Juice does not store or manage any sensitive information. During the project config process Juice will request variable values for the project and each of its dependencies. This data is then stored in AWS Secrets Manager or in your local storage, depending on your required environment. Juice simply provides a safe-guarded procedure for recording config values that ensures smooth project deployment every time.
 
 ## Getting Started
 ### How to register
@@ -46,7 +46,7 @@ Glossary | Description
 ------------- | -------------
 Deployables  | Deployables are programs that can be either existing projects or software that the projects require to run (such as mySQL, ContentService or LoginService).
 Project  | A project is a program that is in the process of development. Not all deployables will be projects. 
-Deployments | Deployments are deployables that are in the process of being configured with a selected environment. You must declare the relationship between the deployable and the environment in the deployable tab before configuration. 
+Deployments | Deployments are deployables that are in the process of being configured with a selected environment. You must declare the relationship between the deployable and the environment in the deployable tab before config. 
 Dependencies | Dependencies are deployables that are required to run exisiting projects and other deployables. For example, a project might require LoginService and ContentService to run, therefore they would be the projects dependencies. A dependency might also have its own dependencies, which would be declared on its own deployables page.
 Environments | Environments should be managed by infrastructure, and devs should only have access to development environments. These can refer to environments on a local server or otherwise (such as UAT, pre-production, production etc).
 Variables | Variables are the configurable values that are required for each project to be deployed (such as endpoints or database name). Variables should be created for every deployable and their dependencies, and each variable will be given values when configuring a project. 
@@ -89,7 +89,7 @@ export JUICE_CONFIG='secrets_manager:::ap-southeast-1:::PHILTEST'
 *In the second example, the ap-southeast-1:::PHILTEST part is an identifier provided by AWS Secrets Manager. See the AWS Documentation for details.
 
 ### Desktop development and testing
-For desktop development and test environments, a flat file will be created with the configuration, which will then be sent to the application in its designated environment. This will not be a secure environment.
+For desktop development and test environments, a flat file will be created with the config, which will then be sent to the application in its designated environment. This will not be a secure environment.
 
 {% raw %}
 <br>
@@ -100,7 +100,7 @@ For desktop development and test environments, a flat file will be created with 
 {% endraw %}
 
 ### Pre-production and production
-For pre-production and production environments, the flat file generated in desktop development and test environments will be reformatted based on your environments specific requirements. This will then be sent to AWS Secrets Manager where you will be required to provide authorisation before storing the new configuration. This will be a secure environment. It is only at this stage that sensitive values should be stored in the config file.
+For pre-production and production environments, the flat file generated in desktop development and test environments will be reformatted based on your environments specific requirements. This will then be sent to AWS Secrets Manager where you will be required to provide authorisation before storing the new config. This will be a secure environment. It is only at this stage that sensitive values should be stored in the config file.
 
 {% raw %}
 <br>
@@ -135,7 +135,7 @@ In your program you will be required to define the following values:
 ```
 
 The value returned will be determined by:
-1. If the value is defined in the configuration it will be returned.
+1. If the value is defined in the config it will be returned.
 2. If a default value is specified, it will be returned.
 3. If the default value is juice.OPTIONAL, then the default value for the type will be returned (an empty string, or -1 for numeric values).
 4. If the default value provided is juice.MANDATORY, an exception is thrown. Typically the program should immediately log the error and shut down.

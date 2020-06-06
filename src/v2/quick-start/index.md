@@ -8,16 +8,14 @@ order: 1
 The way you use JuiceConfig will depend on your role in operations or as a developer. Generally the overall process will go as follows: 
 1. Developers will define config parameters required for their application.
 2. Operations will define environments and value of parameters supporting the application.
-3. JuiceConfig assists with defining the parameter values for each environment, and save the resulting configurations securely.
-4. When retrieving previous configs, JuiceConfig pulls config values from secure storage (local or AWS/ECS/Docker).
+3. Juice assists with defining the parameter values for each environment, and save the resulting configs securely.
+4. When retrieving previous configs, Juice pulls config values from secure storage (local or AWS/ECS/Docker).
 ### Example Use Case
 There are 2 main usages for Juice:
 * The local storage allows for development on your personal machine.
 * Access to AWS, ECS and Docker allows deployment to these environments:
     * low security CI or test server
     * highly secure staging and production servers
-
-#### Add diagram here...
 
 ## Config Manager
   * juiceconfig.com
@@ -39,6 +37,8 @@ There are 2 main usages for Juice:
   * NodeJS
   * Java (not ready yet)
   * Golang (not ready yet)
+
+# CLI
 
 ## Updating legacy config files
 e.g. Tomcat / Spring
