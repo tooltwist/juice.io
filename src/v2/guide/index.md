@@ -71,12 +71,14 @@ The rest is intuitive and the process of adding information is up to you. Howeve
 1. Deployables - Add a new deployable on the deployables page to get started. Deployables require an owner/admin, which by default will be the user adding the deployable; name; description; type; and, also have the option of adding a product owner. Deployables can be made public, which means that any user with a Juice account will be able to access the deployable and can configure it within their own environments. Ensure that you create deployables for your projects and their dependencies.
 2. Dependencies - You can declare the relationship between deployables by clicking on a deployable and selecting 'Add new dependency' in the dependencies tab. Dependencies must be added as a deployable before a relationship can be declared. 
 3. Variables - Once all deployables have been added, their required variable names will need to be declared so they can be successfully configured later on. 
-4. Environments - 
-5. Deployments 
-6. Configure
+4. Environments - Adding environments will be the simplest part of the process. Simply add the names and specifications of your environments.
+5. Deployments - Once both deployables and environments have been set up, you can create a deployment record on the Applications page. Simply select the deployable and environment, then choose a name to identify the deployment. You can create multiple records for the same environment and deployable provided that you choose a new application name each time. 
+6. Configure - To configure, select 'configure' on the deployment record of your choice. Here you can edit the details of the deployment, generate a config file, download documentation, and find commands for provisioning and connnecting to AWS. If you are trying to configure a non-secure environment, you can also enter values for the variables you have defined. This is not possible for secure environments, values will need to be provided within the security of AWS or the environment selected. 
 
 <u>As an organisation: </u>
-
+1. Create personal account.
+2. Create organisation.
+3. We haven't gotten this far yet xx
 
 *** Below is the first draft: ***
 1. Your first step could be to add deployables. Depending on how complicated or numerous your programs are, this might take a while. Alternatively you may wish to add all deployables relevant to a certain project, then go through the entire process for each project to ensure that you do not miss any dependencies (deployables) for that project. 
