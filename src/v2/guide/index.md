@@ -11,12 +11,12 @@ Juice is a config tool for AWS that assists programmers and non-programmers alik
 ### How does it work? 
 Juice allows users to declare the core elements required to run their programs in various environments. Once set up, generating a config file for a project in a selected environmnent is as easy as creating a deployment record on the applications page, then selecting 'configure' and following the prompts. Juice will generate a config file based on the variables and dependencies values that have been provided by the user.
 
-Individual users can create a free account and begin storing values immediately. Additionally, users can pay a monthly subscription fee to upgrade their account to include organisations with members and teams. Members of an organisation have restricted access to its deployables and environments based on the admin settings. Each deployable and environment can be either public or will have a team of users specified by the admin. This is ideal for companies with numerous versions of projects running in various environments used by their teams that require strict separation and consistency. 
+Individual users can create a free account and begin storing values immediately. Additionally, users can pay a monthly subscription fee to upgrade their account to include organisations with members and teams. Members of an organisation have restricted access to its deployables and environments based on the admin settings. Each deployable and environment can be either public or will have a team of users chosen by the admin. This is ideal for companies with numerous versions of projects running in various environments used by their teams that require strict separation and consistency. 
 
 ### Why is it useful? 
 Deployment can become a nightmare if your workflow relies on individuals to maintain consistent and accurate config files. Most programmers develop their own procedures for deployment and storing sensitive information. Whilst companies may have recommended best practices, it’s easy for things to slip through the cracks due to human errors such as miscommunication, inexperience or just plain-old laziness. These mistakes are not only annoying but can also be damaging to client relationships and pose serious security risks. This is where Juice becomes a valuable asset in your future deployments.
 
-Juice provides a simple, easy-to-use solution for configuring projects that prevents easily-made human errors. The procedures provided by Juice are safe guarded to prevent unauthorised personnel from making potentially damaging changes to existing infrastructure or projects, whilst also ensuring that sensitive information cannot be stored or accidentally replicated. This also ensures that config files are consistent, thorough and values are recorded carefully and thoughtfully. 
+Juice provides a simple, easy-to-use solution for configuring projects that prevents easily-made human errors. The procedures provided by Juice are safe guarded to prevent unauthorised personnel from making potentially damaging changes to existing infrastructure or project configs, whilst also ensuring that sensitive information cannot be stored or accidentally replicated. This also ensures that config files are consistent, thorough and values are recorded carefully and thoughtfully. 
 
 #### Objectives
 * To make development a simple and standalone process by removing the complications of production config considerations.
@@ -32,11 +32,11 @@ Juice provides a simple, easy-to-use solution for configuring projects that prev
 * To remove duplicate entries of config values (e.g. server starts on specific port, client uses that port as it’s endpoint).
 
 ### Is it secure?
-Juice does not store or manage any sensitive information. It is the users responsibility to ensure that sensitive information is not saved on the Juice database. Juice simply stores the deployable variable names and will only request variable values during the configuration process. This sensitive data is then stored in AWS Secrets Manager or in your local storage, depending on your required environment. Juice simply provides a procedure for recording config values that ensures smooth project deployment every time, <i>it should never be used to store sensitive information</i>. 
+Juice does not store or manage any sensitive information. It is the users responsibility to ensure that sensitive information is not saved on the Juice database. Juice simply stores the deployable variable names and will only request variable values during the configuration process. This sensitive data is then stored in AWS Secrets Manager or in your local storage, depending on your requirements. Juice simply provides a procedure for recording config values that ensures smooth project deployment every time, <i>users should never try to store sensitive information</i>. 
 
 ## Getting Started
 ### How to register
-You can register for an account using LoginService, a ToolTwist authentication tool. Sign up using your email address and create a username and password for login. A verification email will be sent to your email address where you can confirm your membership. Once verified you can login using the homepage at www.juiceconfig.io. 
+You can register for an account using LoginService, a ToolTwist authentication tool. Sign up via the Juice homepage, using your email address and create a username and password for login. A verification email will be sent to your email address where you can confirm your membership. Once verified you can login using the homepage at www.juiceconfig.io. 
 
 To sign up as an organisation first you will be required to create a personal account. Once your personal account has been set up, you can add an organisation on the My Account page. You will be required to enter payment details, add the name and details of your organisation, and can add users during this process.
 
@@ -53,7 +53,7 @@ There will be a variety of familiar terms that you will see on the website. To a
 
 Glossary | Description
 ------------- | -------------
-Deployables  | Deployables are programs that will be deployable and can be either existing projects or dependencies that are required for deployment (such as mySQL, ContentService or LoginService).
+Deployables  | Deployables are programs that will be deployed and can be either existing projects or dependencies that are required for deployment (such as mySQL, ContentService or LoginService).
 Project | A project is a program that is in the process of development by the user. Not all deployables will be projects. 
 Deployments | Deployments are deployables that have been or will be configured with a selected environment. You can create and configure a deployment on the Applications page.
 Dependencies | Dependencies are deployables that are required to run exisiting projects and other deployables. For example, a project might require LoginService and ContentService to run, therefore they would be the projects' dependencies. To declare a dependency relationship between 2 deployables, both must be added to the deployables records first. A dependency might also have its own dependencies, which would be declared on its own deployable page.
@@ -68,11 +68,11 @@ Tokens | Tokens can be generated and sent to other users to approve, approve and
 The rest is intuitive and the process of adding information is up to you. However, generally we might suggest the following order:
 
 <u>For a personal account: </u>
-1. Deployables - Add a new deployable on the deployables page to get started. Deployables require an owner/admin, which by default will be the user adding the deployable; name; description; type; and, also have the option of adding a product owner. Deployables can be made public, which means that any user with a Juice account will be able to access the deployable and can configure it within their own environments. Ensure that you create deployables for your projects and their dependencies.
+1. Deployables - Add a new deployable on the deployables page to get started. Deployables require an owner/admin, which by default will be the user adding the deployable; deployable name; description; type; and, also has the option of adding a product owner. Deployables can be made public, which means that any user with a Juice account will be able to access the deployable and can configure it within their own environments. Ensure that you create deployables for your projects and their dependencies.
 2. Dependencies - You can declare the relationship between deployables by clicking on a deployable and selecting 'Add new dependency' in the dependencies tab. Dependencies must be added as a deployable before a relationship can be declared. 
 3. Variables - Once all deployables have been added, their required variable names will need to be declared so they can be successfully configured later on. 
-4. Environments - Adding environments will be the simplest part of the process. Simply add the names and specifications of your environments.
-5. Deployments - Once both deployables and environments have been set up, you can create a deployment record on the Applications page. Simply select the deployable and environment, then choose a name to identify the deployment. You can create multiple records for the same environment and deployable provided that you choose a new application name each time. 
+4. Environments - Adding environments will be the simplest part of the process. Simply add the names and specifications of your environments. If you are adding an AWS environment, you will need to provide information about your account.
+5. Deployments - Once both deployables and environments have been set up, you can create a deployment record on the Applications page. Simply select the deployable and environment, then choose a name to identify the deployment. You can create multiple records for the same environment and deployable if you provide a different application name for each record. 
 6. Configure - To configure, select 'configure' on the deployment record of your choice. Here you can edit the details of the deployment, generate a config file, download documentation, and find commands for provisioning and connnecting to AWS. If you are trying to configure a non-secure environment, you can also enter values for the variables you have defined. This is not possible for secure environments, values will need to be provided within the security of AWS or the environment selected. 
 
 <u>As an organisation: </u>
@@ -80,10 +80,6 @@ The rest is intuitive and the process of adding information is up to you. Howeve
 2. Create organisation.
 3. We haven't gotten this far yet xx
 
-*** Below is the first draft: ***
-1. Your first step could be to add deployables. Depending on how complicated or numerous your programs are, this might take a while. Alternatively you may wish to add all deployables relevant to a certain project, then go through the entire process for each project to ensure that you do not miss any dependencies (deployables) for that project. 
-2. Next, you should populate the relevant fields for each deployable. This includes entering in the deployables variables and dependencies. You should have all deployables added already, so adding dependencies is as simple as selecting the deployable from a list.
-3. Adding environments will be the simplest part of the process. Simply add the names and specifications of your environments.
 4. Next add the names and roles for users who will need access to Juice. The users tab will only be viewable for the superuser or read/write users. This displays a list of all users with access to your Juice account, their accessibility which can be edited, and the projects and environments that they are involved in. 
 5. Lastly, as a superuser you will need to manually add users to each project or environment, or create read/write access for other users so that they can add themselves and members of their team to projects and environments where applicable. However, it is important to limit users that have read/write access to minimise the chances of human error.
 
