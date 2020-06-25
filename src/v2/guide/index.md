@@ -68,12 +68,57 @@ Tokens | Tokens can be generated and sent to other users to approve, approve and
 The rest is intuitive and the process of adding information is up to you. However, generally we might suggest the following order:
 
 <u>For a personal account: </u>
-1. Deployables - Add a new deployable on the deployables page to get started. Deployables require an owner/admin, which by default will be the user adding the deployable; deployable name; description; type; and, also has the option of adding a product owner. Deployables can be made public, which means that any user with a Juice account will be able to access the deployable and can configure it within their own environments. Ensure that you create deployables for your projects and their dependencies.
-2. Dependencies - You can declare the relationship between deployables by clicking on a deployable and selecting 'Add new dependency' in the dependencies tab. Dependencies must be added as a deployable before a relationship can be declared. 
-3. Variables - Once all deployables have been added, their required variable names will need to be declared so they can be successfully configured later on. 
-4. Environments - Adding environments will be the simplest part of the process. Simply add the names and specifications of your environments. If you are adding an AWS environment, you will need to provide information about your account.
-5. Deployments - Once both deployables and environments have been set up, you can create a deployment record on the Applications page. Simply select the deployable and environment, then choose a name to identify the deployment. You can create multiple records for the same environment and deployable if you provide a different application name for each record. 
-6. Configure - To configure, select 'configure' on the deployment record of your choice. Here you can edit the details of the deployment, generate a config file, download documentation, and find commands for provisioning and connnecting to AWS. If you are trying to configure a non-secure environment, you can also enter values for the variables you have defined. This is not possible for secure environments, values will need to be provided within the security of AWS or the environment selected. 
+<b>1. Deployables </b>- Add a new deployable to the deployables page to get started. Deployables require an owner/admin, which by default will be the user adding the deployable; deployable name; description; type; and, also has the option of adding a product owner. Deployables can be made public, which means that any user with a Juice account will be able to access the deployable and can configure it within their own environments. Ensure that you create deployables for both your projects and their dependencies.
+
+{% raw %}
+<br>
+<br>
+<div style="max-width: 600px;">
+  <img style="width: 100%;" src="../../gifs/deployable.gif">
+</div>
+{% endraw %}
+
+<b>2. Dependencies </b>- You can declare the relationship between deployables by clicking on a deployable and selecting 'Add new dependency' in the dependencies tab. Dependencies must be added as a deployable before a relationship can be declared. 
+
+{% raw %}
+<br>
+<br>
+<div style="max-width: 600px;">
+  <img style="width: 100%;" src="../../gifs/dependency.gif">
+</div>
+{% endraw %}
+
+<b>3. Variables </b>- Once all deployables have been added, their required variable names will need to be declared so they can be successfully configured later on. 
+
+{% raw %}
+<br>
+<br>
+<div style="max-width: 600px;">
+  <img style="width: 100%;" src="../../gifs/variable.gif">
+</div>
+{% endraw %}
+
+<b>4. Environments </b>- Adding environments will be the simplest part of the process. Simply add the names and specifications of your environments. If you are adding an AWS environment, you will need to provide information about your account.
+
+{% raw %}
+<br>
+<br>
+<div style="max-width: 600px;">
+  <img style="width: 100%;" src="../../gifs/environment.gif">
+</div>
+{% endraw %}
+
+<b>5. Deployments </b>- Once both deployables and environments have been set up, you can create a deployment record on the Applications page. Simply select the deployable and environment, then choose a name to identify the deployment. You can create multiple records for the same environment and deployable if you provide a different application name for each record. 
+
+{% raw %}
+<br>
+<br>
+<div style="max-width: 600px;">
+  <img style="width: 100%;" src="../../gifs/deployment.gif">
+</div>
+{% endraw %}
+
+<b>6. Configure </b>- To configure, select 'configure' on the deployment record of your choice. Here you can edit the details of the deployment, generate a config file, download documentation, and find commands for provisioning and connnecting to AWS. If you are trying to configure a non-secure environment, you can also enter values for the variables you have defined. This is not possible for secure environments, values will need to be provided within the security of AWS or the environment selected. 
 
 <u>As an organisation: </u>
 1. Create personal account.
